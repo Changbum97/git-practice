@@ -55,4 +55,11 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/clear-history")
+    public String clearHistories(Model model) {
+        histories.clear();
+        model.addAttribute("numbers", new Numbers());
+        return "redirect:/";
+    }
 }
