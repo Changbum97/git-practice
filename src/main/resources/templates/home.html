@@ -16,6 +16,7 @@
         <div>[[*{answer}]]</div>
     </form>
     <hr>
+    <button type="button" onclick="location.href='/clear-history'">기록 삭제</button>
     <ul th:each="history : ${histories}">
         <li th:text="|${history.x} + ${history.y} = ${history.answer}|"></li>
     </ul>

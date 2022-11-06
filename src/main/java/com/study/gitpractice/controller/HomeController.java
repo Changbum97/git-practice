@@ -29,4 +29,11 @@ public class HomeController {
         model.addAttribute("histories", histories);
         return "home";
     }
+
+    @GetMapping("/clear-history")
+    public String clearHistories(Model model) {
+        histories.clear();
+        model.addAttribute("numbers", new Numbers());
+        return "redirect:/";
+    }
 }
