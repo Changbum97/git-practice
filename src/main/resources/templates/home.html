@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>더하기</h1>
+    <hr>
+    <form action="/home" method="post" th:object="${numbers}" style="display: inline-flex">
+        <input type="number" th:field="*{x}">
+        <div>+</div>
+        <input type="number" th:field="*{y}">
+        <button type="submit"> = </button>
+        <div>[[*{answer}]]</div>
+    </form>
+</body>
+</html>
+<style>
+    input {
+        width: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    button {
+        margin-right: 20px;
+    }
+</style>
