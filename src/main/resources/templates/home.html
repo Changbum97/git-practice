@@ -8,13 +8,17 @@
 <body>
     <h1>더하기</h1>
     <hr>
-    <form action="/home" method="post" th:object="${numbers}" style="display: inline-flex">
+    <form action="/" method="post" th:object="${numbers}" style="display: inline-flex">
         <input type="number" th:field="*{x}">
         <div>+</div>
         <input type="number" th:field="*{y}">
         <button type="submit"> = </button>
         <div>[[*{answer}]]</div>
     </form>
+    <hr>
+    <ul th:each="history : ${histories}">
+        <li th:text="|${history.x} + ${history.y} = ${history.answer}|"></li>
+    </ul>
 </body>
 </html>
 <style>
