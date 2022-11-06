@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class Numbers {
-    private int x;
-    private int y;
-    private int answer;
+    private double x;
+    private double y;
+    private double answer;
+    private String op;
 }

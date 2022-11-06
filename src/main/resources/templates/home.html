@@ -6,18 +6,21 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>더하기</h1>
+    <h1>사칙연산</h1>
     <hr>
     <form action="/" method="post" th:object="${numbers}" style="display: inline-flex">
         <input type="number" th:field="*{x}">
-        <div>+</div>
+        <select th:field="*{op}">
+            <option th:each="operation : ${operations}" th:value="${operation}" th:text="${operation}"/>
+        </select>
         <input type="number" th:field="*{y}">
         <button type="submit"> = </button>
         <div>[[*{answer}]]</div>
     </form>
     <hr>
+    <button type="button" onclick="location.href='/clear-history'">기록 삭제</button>
     <ul th:each="history : ${histories}">
-        <li th:text="|${history.x} + ${history.y} = ${history.answer}|"></li>
+        <li th:text="|${history.x} ${history.op} ${history.y} = ${history.answer}|"></li>
     </ul>
 </body>
 </html>

@@ -18,15 +18,48 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("numbers", new Numbers());
+
+        List<String> operations = new ArrayList<>();
+        operations.add("+");
+        operations.add("-");
+        operations.add("*");
+        operations.add("/");
+        model.addAttribute("operations", operations);
+
         return "home";
     }
 
     @PostMapping("/")
     public String add(@ModelAttribute Numbers numbers, Model model) {
-        numbers.setAnswer(numbers.getX() + numbers.getY());
+
+        if(numbers.getOp().equals("+")) {
+            numbers.setAnswer(numbers.getX() + numbers.getY());
+        } else if(numbers.getOp().equals("-")) {
+            numbers.setAnswer(numbers.getX() - numbers.getY());
+        } else if(numbers.getOp().equals("*")) {
+            numbers.setAnswer(numbers.getX() * numbers.getY());
+        } else {
+            numbers.setAnswer(numbers.getX() / numbers.getY());
+        }
+
         histories.add(numbers);
         model.addAttribute("numbers", numbers);
         model.addAttribute("histories", histories);
+
+        List<String> operations = new ArrayList<>();
+        operations.add("+");
+        operations.add("-");
+        operations.add("*");
+        operations.add("/");
+        model.addAttribute("operations", operations);
+
         return "home";
+    }
+
+    @GetMapping("/clear-history")
+    public String clearHistories(Model model) {
+        histories.clear();
+        model.addAttribute("numbers", new Numbers());
+        return "redirect:/";
     }
 }
